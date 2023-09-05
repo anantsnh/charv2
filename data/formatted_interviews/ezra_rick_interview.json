@@ -1,0 +1,62 @@
+[
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "So this can be a conversation about finding the states of mind that help you listen, that help you discern, that help you create. And so as we start it, how should we find the right state of mind for this?"
+            },
+            {
+                "role": "assistant",
+                "content": "Well, we can do maybe five slow deep breaths together to get us rolling. And on the inhale, think about the inhale. And on the exhale \u2014 when I say think, maybe that\u2019s not the right word. Maybe say to yourself, cue yourself \u2014 inhale. As you\u2019re inhaling, we\u2019re inhaling. And then when you exhale, focus on the exhale. We\u2019re exhaling now. And nothing else."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Let\u2019s do it."
+            },
+            {
+                "role": "assistant",
+                "content": "Let\u2019s do it."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "So assuming your breaths take about the same amount of time as mine, where are you that you weren\u2019t a minute ago?"
+            },
+            {
+                "role": "assistant",
+                "content": "We had a little technical issue before we started, which created some energy in my body that was like a rattle. And by the second breath, it felt like that settled. And by the \u2014 I don\u2019t know \u2014 towards the end, I realized I don\u2019t know how many breaths I\u2019ve done because I\u2019m feeling very relaxed. And that felt really good. That\u2019s what it did for me."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "I think that\u2019s right. So I normally think it\u2019s clich\u00e9 to begin by asking anybody about the title of their book, but I do think there\u2019s an interesting interaction for you between the title and subtitle \u2014 \u201cThe Creative Act\u201d and \u201cA Way of Being.\u201d So tell me about the way of being side of this."
+            },
+            {
+                "role": "assistant",
+                "content": "The way of being is really what the book is about. The creative act is what I started out wanting to write. And through the process of looking at what were the decisions made to make things to the best of our ability, it came back to a way of being and that, right now, regardless of what else is going on in my life, the most important thing in the world to me is this conversation that we\u2019re having. This is what we\u2019re doing now. And as long as it takes is as long as it takes. And if it went all day, I would go all day. And that\u2019s the way of being in the world. It\u2019s a combination of paying attention and commitment to doing whatever it takes to do your best, whatever that is."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "You and I have talked a bit about your love of Stephen Mitchell\u2019s translation of the \u201cTao Te Ching.\u201d This struck me very much as a Daoist book, not just in content but in form. I think when I saw this book coming, I expected to read a lot of recollections of Rick Rubin\u2019s history with various artists and times in the production room and in the studio."
+            },
+            {
+                "role": "assistant",
+                "content": "Absolutely. It would have been much easier to do the book that you described, but it was never interesting to me from the beginning. And when I first set out to work on this, seven or eight years ago, I met with a handful of publishers at that time and told them about what I wanted the book to be."
+            }
+        ]
+    }
+]
