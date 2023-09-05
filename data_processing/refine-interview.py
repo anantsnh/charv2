@@ -1,6 +1,7 @@
 import openai
 import json
 import os
+import random
 
 # Constants
 INPUT_DIR = os.path.join("..", "data", "formatted_interviews")
@@ -12,17 +13,6 @@ openai.api_key = 'YOUR_OPENAI_API_KEY'
 def is_short_content(content):
     return len(content.split()) <= 3
 
-def is_out_of_context(content):
-    completion = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant. Determine if the following question and answer pair taken from an interview makes sense on its own or if it seems to be heavily building on context from prior questions and answers. If it seems to be building on context from earlier in the interview, respond with 'yes', otherwise respond with 'no'."},
-            {"role": "user", "content": content}
-        ]
-    )
-    response = completion.choices[0].message['content']
-    return "yes" in response.lower()
-
 def generate_contextual_conversation(question, answer):
     completion = openai.ChatCompletion.create(
         model="gpt-4",
@@ -32,6 +22,16 @@ def generate_contextual_conversation(question, answer):
         ]
     )
     return completion.choices[0].message['content']
+
+def parse_contextual_conversation(conversation_text):
+    lines = conversation_text.split("\n")
+    messages = []
+    for i in range(4):  # We only want the first 2 Q&As
+        line = lines[i]
+        role = "user" if "Question:" in line else "assistant"
+        content = line.split(":")[1].strip()
+        messages.append({"role": role, "content": content})
+    return messages
 
 def refine_dataset(filename):
     with open(os.path.join(INPUT_DIR, filename + ".json"), 'r') as f:
@@ -45,10 +45,13 @@ def refine_dataset(filename):
         if is_short_content(user_content) or is_short_content(assistant_content):
             continue
 
-        # Generate contextual conversation if needed
-        if is_out_of_context('question: ' + user_content + ' answer: ' + assistant_content):
-            contextual_conversation = generate_contextual_conversation(user_content, assistant_content)
-            refined_data.append({"messages": contextual_conversation})
+        # Randomly decide if a Q&A pair should get a contextual conversation
+        if random.choice([True, False]):
+            contextual_conversation_text = generate_contextual_conversation(user_content, assistant_content)
+            contextual_messages = parse_contextual_conversation(contextual_conversation_text)
+            contextual_messages.append({"role": "user", "content": user_content})
+            contextual_messages.append({"role": "assistant", "content": assistant_content})
+            refined_data.append({"messages": contextual_messages})
         else:
             refined_data.append(conversation)
 
