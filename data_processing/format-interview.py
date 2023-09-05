@@ -2,12 +2,9 @@ import json
 import os
 import re
 
-# Ensure the output directory exists
 output_directory = os.path.join("..", "data", "formatted_interviews")
-if not os.path.exists(output_directory):
-    os.makedirs(output_directory)
 
-# Hardcoded interview
+# PASTE INTERVIEW BELOW THEN RUN SCRIPT
 INTERVIEW = """
 EZRA KLEIN: So this can be a conversation about finding the states of mind that help you listen, that help you discern, that help you create. And so as we start it, how should we find the right state of mind for this?
 
@@ -50,7 +47,7 @@ def format_interview(interview_text, interviewer_name):
     conversation = None
 
     for line in lines:
-        # Remove text within square brackets
+        # Remove text within square brackets such as [LAUGHTER] etc.
         line = re.sub(r'\[.*?\]', '', line).strip()
 
         colon_index = line.find(":")
@@ -72,7 +69,6 @@ def format_interview(interview_text, interviewer_name):
             "content": content
         })
 
-    # Append the last conversation if it exists
     if conversation:
         conversations.append(conversation)
 
