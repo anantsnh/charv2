@@ -13,6 +13,7 @@ openai.api_key = 'YOUR_OPENAI_API_KEY'
 def is_short_content(content):
     return len(content.split()) <= 3
 
+# Generates 2 questions and 2 answers that lead up to the provided question and answer for added context
 def generate_contextual_conversation(question, answer):
     completion = openai.ChatCompletion.create(
         model="gpt-4",
@@ -23,6 +24,7 @@ def generate_contextual_conversation(question, answer):
     )
     return completion.choices[0].message['content']
 
+# Parses the generated contextual conversation into a list of messages
 def parse_contextual_conversation(conversation_text):
     lines = conversation_text.split("\n")
     messages = []
@@ -32,6 +34,23 @@ def parse_contextual_conversation(conversation_text):
         content = line.split(":")[1].strip()
         messages.append({"role": role, "content": content})
     return messages
+
+def augment_prompt(question, answer):
+    augmented_prompts = []
+    
+    for _ in range(3):  # Generate 3 different wordings
+        completion = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant. You will be provided a Question and an Answer. Rework the question to make it standalone and contextually appropriate for the given answer while still maintaining some of the contextual details from the original question. Return only the reworked question."},
+                {"role": "user", "content": f"Question: {question}, Answer: {answer}"}
+            ]
+        )
+        reworked_question = completion.choices[0].message['content']
+        augmented_prompts.append(reworked_question)
+    
+    return augmented_prompts
+
 
 def refine_dataset(filename):
     with open(os.path.join(INPUT_DIR, filename + ".json"), 'r') as f:
@@ -53,7 +72,14 @@ def refine_dataset(filename):
             contextual_messages.append({"role": "assistant", "content": assistant_content})
             refined_data.append({"messages": contextual_messages})
         else:
-            refined_data.append(conversation)
+            augmented_prompts = augment_prompt(user_content, assistant_content)
+            for prompt in augmented_prompts:
+                refined_data.append({
+                    "messages": [
+                        {"role": "user", "content": prompt},
+                        {"role": "assistant", "content": assistant_content}
+                    ]
+                })
 
     with open(os.path.join(OUTPUT_DIR, filename + ".json"), 'w') as f:
         json.dump(refined_data, f, indent=4)
