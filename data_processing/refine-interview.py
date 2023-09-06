@@ -2,13 +2,18 @@ import openai
 import json
 import os
 import random
+from dotenv import load_dotenv
 
+load_dotenv()
+
+# Get the API key
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Constants
 INPUT_DIR = os.path.join("..", "data", "formatted_interviews")
 OUTPUT_DIR = os.path.join("..", "data", "refined_interviews")
 
 # Initialize OpenAI
-openai.api_key = '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'
+openai.api_key = OPENAI_API_KEY
 
 def is_short_content(content):
     return len(content.split()) <= 3
