@@ -44,7 +44,7 @@ while True:
         time.sleep(30)
 
 # edit file_id if file is already uploaded
-# file_id = "file-2p0rVvJYbXVxpPqSR6pzgmCd"
+# file_id = "file-sZ7y9pwtfcWzgVShE30QejVz"
 
 # Start the fine-tuning job
 response = openai.FineTuningJob.create(training_file=file_id, model="gpt-3.5-turbo")
