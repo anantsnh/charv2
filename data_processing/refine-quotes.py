@@ -6,7 +6,7 @@ import random
 # Initialize OpenAI
 openai.api_key = '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'
 
-OUTPUT_DIR = os.path.join("..", "data", "refined_quotes")
+OUTPUT_DIR = os.path.join("..", "data", "refined_data")
 
 def augment_prompt(quote):
     augmented_prompts = []

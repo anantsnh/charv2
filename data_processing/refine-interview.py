@@ -82,21 +82,21 @@ def refine_dataset(filename):
             continue
 
         # Create a contextual conversation 15% of the time
-        if random.random() < 0.15:
-            contextual_conversation_text = generate_contextual_conversation(user_content, assistant_content)
-            contextual_messages = parse_contextual_conversation(contextual_conversation_text)
-            contextual_messages.append({"role": "user", "content": user_content})
-            contextual_messages.append({"role": "assistant", "content": assistant_content})
-            refined_data.append({"messages": contextual_messages})
-        else:
-            augmented_prompts = augment_prompt(user_content, assistant_content)
-            for prompt in augmented_prompts:
-                refined_data.append({
-                    "messages": [
-                        {"role": "user", "content": prompt},
-                        {"role": "assistant", "content": assistant_content}
-                    ]
-                })
+        # if random.random() < 0.15:
+        #     contextual_conversation_text = generate_contextual_conversation(user_content, assistant_content)
+        #     contextual_messages = parse_contextual_conversation(contextual_conversation_text)
+        #     contextual_messages.append({"role": "user", "content": user_content})
+        #     contextual_messages.append({"role": "assistant", "content": assistant_content})
+        #     refined_data.append({"messages": contextual_messages})
+        # else:
+        augmented_prompts = augment_prompt(user_content, assistant_content)
+        for prompt in augmented_prompts:
+            refined_data.append({
+                "messages": [
+                    {"role": "user", "content": prompt},
+                    {"role": "assistant", "content": assistant_content}
+                ]
+            })
 
     with open(os.path.join(OUTPUT_DIR, filename + ".json"), 'w') as f:
         json.dump(refined_data, f, indent=4)
