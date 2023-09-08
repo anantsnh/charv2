@@ -21,7 +21,8 @@
 
 1. Refine the content:
    - Paste the information into `refine-quotes.py` and run it.
-     - This creates user prompts for each "quote" and saves them as JSON.
+     - Seperate each piece of information by an empty new line in between - the information should be data where advice is being given
+     - This creates user prompts for each "quote" or piece of information and saves them as JSON.
 
 ## **Additional Dataset Refinement**
 
@@ -38,4 +39,4 @@
 ## **Fine-tuning the Model**
 
 1. Execute the `finetune.py` script.
-2. Profit!
+2. Profit.
