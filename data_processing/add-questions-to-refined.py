@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 # Initialize OpenAI
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-openai.api_key = OPENAI_API_KEY
+openai.api_key = "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"
 
 INPUT_DIR = os.path.join("..", "data", "refined_data")
 OUTPUT_DIR = os.path.join("..", "data", "refined_data")
@@ -30,8 +30,8 @@ def add_follow_up_questions(filename):
         user_content = conversation['messages'][0]['content']
         assistant_content = conversation['messages'][1]['content']
 
-        # 35% chance to generate a follow-up question
-        if random.random() < 0.35:
+        # 40% chance to generate a follow-up question
+        if random.random() < 0.4:
             follow_up = generate_follow_up(user_content, assistant_content)
             # Append the follow-up to the assistant's content
             assistant_content += " " + follow_up

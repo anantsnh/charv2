@@ -10,7 +10,7 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Constants
 INPUT_DIR = os.path.join("..", "data", "formatted_interviews")
-OUTPUT_DIR = os.path.join("..", "data", "refined_interviews")
+OUTPUT_DIR = os.path.join("..", "data", "refined_data")
 
 # Initialize OpenAI
 openai.api_key = OPENAI_API_KEY
