@@ -7,6 +7,7 @@
    - All necessary scripts are located here.
 2. Format the interview:
    - Paste an interview into `format_interview.py` and execute the script.
+   - For now, you will have to ensure that all of the response from a person is in the same line as their name, no new lines in the middle of a response.
 3. Review the formatted interview:
    - Head to the `formatted_interviews` sub-directory inside the `data` directory.
    - Examine the content, removing any Q&A pairs unsuitable for training.
@@ -14,7 +15,7 @@
    - Execute the `refine-interview.py` script.
      - This augments the questions for each Q&A, ensuring they make sense in a standalone context.
 5. Review the refined interview:
-   - Navigate to the `refined_interviews` sub-directory in the `data` directory.
+   - Navigate to the `refined_data` sub-directory in the `data` directory.
    - Again, remove any Q&A pairs you deem inappropriate for training.
 
 ## **Processing General Information (from Blogs, Books, Lectures)**
